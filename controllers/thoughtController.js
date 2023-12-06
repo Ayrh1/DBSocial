@@ -71,7 +71,7 @@ module.exports = {
     // Then if the app exists, we look for any users associated with the app based on he app ID and update the thoughts array for the User.
     async deleteThought(req, res) {
       try {
-        const thought = await Thought.findOneAndRemove({ _id: req.params.applicationId });
+        const thought = await Thought.findOneAndRemove({ _id: req.params.thoughtId });
   
         if (!thought) {
           return res.status(404).json({ message: 'No thought with this id!' });
@@ -85,7 +85,7 @@ module.exports = {
   
         if (!user) {
           return res.status(404).json({
-            message: 'thought created but no user with this id!',
+            message: 'thought removed but no user with this id!',
           });
         }
   

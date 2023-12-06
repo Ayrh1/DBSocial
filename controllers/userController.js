@@ -1,4 +1,5 @@
-const User = require('../models/User');
+const  User = require('../models/User');
+const  Thought = require('../models/Thought');
 
 module.exports = {
   async getUsers(req, res) {
@@ -56,18 +57,19 @@ async deleteUser(req, res) {
   try {
     const userId = req.params.userId; // Assuming you're getting userId from req.params
     const user = await User.findById(userId);
-
+    console.log(user,userId);
     if (!user) {
       return res.status(404).json({ message: 'No user with this id!' });
     }
 
     // Assuming Post model has a 'user' field referencing User's ObjectId
-    await Post.deleteMany({ user: userId });
-    await user.remove();
+    await Thought.deleteMany({ user: userId });
+    await User.findByIdAndDelete(userId);
 
     res.json({ message: 'User successfully deleted!' });
   } catch (err) {
-    res.status(500).json(err);
+    console.error(err); // Log the full error to the console
+    res.status(500).json({ message: err.message }); // Send a more detailed message to the client
   }
 },
 
