@@ -22,7 +22,7 @@ this app is a a basic social media database
     "nodemon": "^2.0.3"
   }
 ## Usage
-![img](DBSocial/assets/Untitled.jpg)
+![img](assets/Untitled.jpg)
 install the listed packages and run application  
 
 ## Credits
